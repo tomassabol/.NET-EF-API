@@ -1,13 +1,12 @@
 ﻿global using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace API.Data
 {
-	public class DataContext : DbContext
-	{
-		public DataContext(DbContextOptions<DataContext> options) : base(options)
-		{
-		}
+    public class DataContext : DbContext
+    {
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+        }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -16,6 +15,6 @@ namespace API.Data
         //}
 
         public DbSet<Helicopter> Helicopters { get; set; }
-	}
+    }
 }
 

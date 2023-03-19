@@ -1,15 +1,12 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-
-namespace API.Services
+﻿namespace API.Services
 {
-	public interface IHelicopterService
-	{
-        List<Helicopter>? GetAll();
-        Helicopter? Get(int id);
-        List<Helicopter>? Create(Helicopter helicopter);
-        List<Helicopter>? Update(int id, Helicopter request);
-        List<Helicopter>? Delete(int id);
+    public interface IHelicopterService
+    {
+        Task<Helicopter>? Get(int id);
+        Task<List<Helicopter>>? GetAll();
+        Task<int?> Create(Helicopter helicopter);
+        Task<Helicopter>? Update(int id, Helicopter request);
+        Task<Boolean>? Delete(int id);
     }
 }
 

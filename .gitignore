@@ -1,2 +1,5 @@
 API/Properties/launchSettings.json
 .DS_Store
+.dll
+*.dll
+*.cache

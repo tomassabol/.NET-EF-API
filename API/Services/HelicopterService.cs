@@ -1,20 +1,21 @@
-﻿using System;
-
-namespace API.Services
+﻿namespace API.Services
 {
     public class HelicopterService : IHelicopterService
     {
-
-        private static List<Helicopter> helicopters = new List<Helicopter>
+        private readonly DataContext _context;
+        public HelicopterService(DataContext context)
         {
-            new Helicopter{Id = 1, Model = "helicopter" }
-        };
+            _context = context;
+        }
 
-        public Helicopter? Get(int id)
+        public async Task<Helicopter>? Get(int id)
         {
-            Helicopter helicopter = helicopters.Find(x => x.Id == id);
-
-            if (helicopter is null)
+            Helicopter? helicopter;
+            try
+            {
+                helicopter = await _context.Helicopters.FindAsync(id);
+            }
+            catch (Exception)
             {
                 return null;
             }
@@ -22,9 +23,14 @@ namespace API.Services
             return helicopter;
         }
 
-        public List<Helicopter>? GetAll()
+        public async Task<List<Helicopter>>? GetAll()
         {
-            if (helicopters.Count == 0)
+            List<Helicopter>? helicopters;
+            try
+            {
+                helicopters = await _context.Helicopters.ToListAsync();
+            }
+            catch (Exception)
             {
                 return null;
             }
@@ -32,37 +38,52 @@ namespace API.Services
 
         }
 
-        public List<Helicopter>? Create(Helicopter helicopter)
+        public async Task<int?> Create(Helicopter helicopter)
         {
-            helicopters.Add(helicopter);
-            return helicopters;
+            int? result;
+            try
+            {
+                await _context.Helicopters.AddAsync(helicopter);
+                result = await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return result;
         }
 
-        public List<Helicopter>? Update(int id, Helicopter request)
+        public async Task<Helicopter>? Update(int id, Helicopter request)
         {
-            Helicopter helicopter = helicopters.Find(x => x.Id == id);
-
-
-            if (helicopter is null)
+            Helicopter? helicopter;
+            try
+            {
+                helicopter = await _context.Helicopters.FindAsync(id);
+                helicopter.Model = request.Model;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
             {
                 return null;
             }
 
-            helicopter.Model = request.Model;
-            return (helicopters);
+            return helicopter;
         }
 
-        public List<Helicopter>? Delete(int id)
+        public async Task<Boolean>? Delete(int id)
         {
-            Helicopter helicopter = helicopters.Find(x => x.Id == id);
-
-            if (helicopter is null)
+            Helicopter? helicopter;
+            try
             {
-                return null;
+                helicopter = await _context.Helicopters.FindAsync(id);
+                _context.Helicopters.Remove(helicopter);
+                await _context.SaveChangesAsync();
             }
-
-            helicopters.Remove(helicopter);
-            return helicopters;
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

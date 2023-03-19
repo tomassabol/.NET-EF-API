@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using API.Services;
 
 namespace API.Controllers
@@ -22,7 +17,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Helicopter>>> GetAll()
         {
-            var result = helicopterService.GetAll();
+            var result = await helicopterService.GetAll();
             if (result is null)
             {
                 return NotFound("No helicopters were found");
@@ -34,31 +29,26 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Helicopter>> Get(int id)
         {
-            var result = helicopterService.Get(id);
+            Helicopter helicopter = await helicopterService.Get(id);
 
-            if (result is null) {
+            if (helicopter is null)
+            {
                 return NotFound("This helicopter was not found");
             }
-            return Ok(result);
+            return Ok(helicopter);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Helicopter>>> Create([FromBody]Helicopter helicopter)
+        public async Task<ActionResult<Boolean>> Create([FromBody] Helicopter helicopter)
         {
-            var result = helicopterService.Create(helicopter);
-            if (result is null)
-            {
-                return BadRequest("bad request");
-            }
+            int? result = await helicopterService.Create(helicopter);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Helicopter>>> Update(int id, [FromBody]Helicopter request)
+        public async Task<ActionResult<Helicopter>> Update(int id, [FromBody] Helicopter helicopter)
         {
-            var result = helicopterService.Update(id, request);
-
-
+            var result = await helicopterService.Update(id, helicopter);
             if (result is null)
             {
                 return NotFound("Helicopter was not found");
@@ -67,11 +57,11 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Helicopter>>> Delete(int id)
+        public async Task<ActionResult<Boolean>> Delete(int id)
         {
-            var result = helicopterService.Delete(id);
+            Boolean result = await helicopterService.Delete(id);
 
-            if (result is null)
+            if (result is false)
             {
                 return NotFound("Helicopter was not ofund");
             }
