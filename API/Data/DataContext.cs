@@ -10,12 +10,6 @@ namespace API.Data
         {
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
-        //    //optionsBuilder.UseNpgsql("Host=deck1.sk;Port=5432;Database=deck1;Username=deckone;Password=deckone");
-        //}
-
         public DbSet<Helicopter> Helicopters { get; set; }
     }
 }
