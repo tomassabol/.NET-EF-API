@@ -3,3 +3,5 @@ API/Properties/launchSettings.json
 .dll
 *.dll
 *.cache
+appsettings.Development.json
+appsettings.json

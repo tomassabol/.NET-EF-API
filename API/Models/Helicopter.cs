@@ -1,12 +1,10 @@
-﻿using System;
-namespace API.Models
+﻿namespace API.Models
 {
-	public class Helicopter
-	{
+    public class Helicopter
+    {
 
-		public int Id { get; set; }
-		public String Model { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public String Model { get; set; } = string.Empty;
 
-	}
+    }
 }
-

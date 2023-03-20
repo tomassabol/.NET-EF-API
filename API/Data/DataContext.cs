@@ -1,4 +1,6 @@
 ﻿global using Microsoft.EntityFrameworkCore;
+using API.Models;
+using System.Collections.Generic;
 
 namespace API.Data
 {

@@ -1,4 +1,10 @@
-﻿namespace API.Services
+﻿using API.Data;
+using API.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace API.Services
 {
     public class HelicopterService : IHelicopterService
     {

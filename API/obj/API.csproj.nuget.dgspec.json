@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tomassabol/Desktop/.NET-EF-API/API/API.csproj": {}
+    "/Users/tomassabol/Desktop/API/API/API.csproj": {}
   },
   "projects": {
-    "/Users/tomassabol/Desktop/.NET-EF-API/API/API.csproj": {
+    "/Users/tomassabol/Desktop/API/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tomassabol/Desktop/.NET-EF-API/API/API.csproj",
+        "projectUniqueName": "/Users/tomassabol/Desktop/API/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/tomassabol/Desktop/.NET-EF-API/API/API.csproj",
+        "projectPath": "/Users/tomassabol/Desktop/API/API/API.csproj",
         "packagesPath": "/Users/tomassabol/.nuget/packages/",
-        "outputPath": "/Users/tomassabol/Desktop/.NET-EF-API/API/obj/",
+        "outputPath": "/Users/tomassabol/Desktop/API/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tomassabol/.nuget/NuGet/NuGet.Config"
@@ -59,11 +59,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.5.0, )"
-            },
-            "System.Linq": {
-              "target": "Package",
-              "version": "[4.3.0, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
